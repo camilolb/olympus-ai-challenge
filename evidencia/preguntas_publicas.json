@@ -1,0 +1,576 @@
+[
+  {
+    "id": "P01",
+    "pregunta": "¿Cuál es el saldo mínimo para abrir una Cuenta Brisa?",
+    "respuesta": "El saldo mínimo de apertura para abrir una Cuenta Brisa es COP 0. [POL-CAB-2026 §2]",
+    "fuentes_recuperadas": [
+      {
+        "id": "POL-CAB-2026 §2",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.3397,
+        "fragmento": "2. Condiciones El saldo mínimo de apertura es COP 0. La cuota de manejo mensual es COP 0. Las transferencias entre cuentas del Banco Nébula mediante la aplicación no tienen costo. La tarjeta débito física se solicita opcionalmente."
+      },
+      {
+        "id": "POL-CAB-2026 §1",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.383,
+        "fragmento": "1. Requisitos de apertura Para abrir una Cuenta Brisa, la persona debe tener al menos 18 años, presentar un documento de identidad válido, registrar un correo electrónico y disponer de un número de celular activo. No se exige certificado laboral ni comprobante de ingresos."
+      },
+      {
+        "id": "POL-CAB-2026 §4",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4199,
+        "fragmento": "4. Alcance Este documento describe únicamente la Cuenta Brisa. Las tasas de remuneración aplicables para el periodo vigente se publican en el catálogo de productos correspondiente."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-LI",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4538,
+        "fragmento": "Producto: Crédito Libre Inversión\nCódigo: CRE-LI\nTipo: Crédito\nTasa efectiva anual (E.A.): 21.4 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 60 meses\nObservación: Ingreso mínimo 2 SMMLV (solo este producto)\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-VIV-HOR",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4883,
+        "fragmento": "Producto: Crédito de Vivienda Horizonte\nCódigo: CRE-VIV-HOR\nTipo: Crédito\nTasa efectiva anual (E.A.): 13.2 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 240 meses\nObservación: Cuota inicial mínima 25 %; consultar POL-CVH-2026\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · AHO-BRISA",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4893,
+        "fragmento": "Producto: Cuenta de Ahorros Brisa\nCódigo: AHO-BRISA\nTipo: Ahorro\nTasa efectiva anual (E.A.): 1.5 %\nCuota de manejo mensual: COP 0\nPlazo máximo: No aplica meses\nObservación: Saldo mínimo de apertura COP 0\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · TAR-NUBE",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4899,
+        "fragmento": "Producto: Tarjeta Nube\nCódigo: TAR-NUBE\nTipo: Tarjeta de crédito\nTasa efectiva anual (E.A.): 28 %\nCuota de manejo mensual: COP 18000\nPlazo máximo: No aplica meses\nObservación: Tasa promocional no documentada: no inventar\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      }
+    ]
+  },
+  {
+    "id": "P02",
+    "pregunta": "¿Cuál es la cuota inicial mínima de un Crédito Horizonte vigente en 2026?",
+    "respuesta": "La cuota inicial mínima para un Crédito Horizonte es del 25 % del valor del inmueble. [POL-CVH-2026 §1]",
+    "fuentes_recuperadas": [
+      {
+        "id": "CAT-PROD-2026-11 · CRE-VIV-HOR",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.282,
+        "fragmento": "Producto: Crédito de Vivienda Horizonte\nCódigo: CRE-VIV-HOR\nTipo: Crédito\nTasa efectiva anual (E.A.): 13.2 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 240 meses\nObservación: Cuota inicial mínima 25 %; consultar POL-CVH-2026\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-LI",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.3283,
+        "fragmento": "Producto: Crédito Libre Inversión\nCódigo: CRE-LI\nTipo: Crédito\nTasa efectiva anual (E.A.): 21.4 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 60 meses\nObservación: Ingreso mínimo 2 SMMLV (solo este producto)\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2026 §2",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4133,
+        "fragmento": "2. Plazos y financiación El plazo máximo de financiación es de 20 años (240 meses). Se puede financiar hasta el 75 % del valor comercial aceptado tras el avalúo."
+      },
+      {
+        "id": "POL-CAB-2026 §2",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4296,
+        "fragmento": "2. Condiciones El saldo mínimo de apertura es COP 0. La cuota de manejo mensual es COP 0. Las transferencias entre cuentas del Banco Nébula mediante la aplicación no tienen costo. La tarjeta débito física se solicita opcionalmente."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · TAR-NUBE",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4317,
+        "fragmento": "Producto: Tarjeta Nube\nCódigo: TAR-NUBE\nTipo: Tarjeta de crédito\nTasa efectiva anual (E.A.): 28 %\nCuota de manejo mensual: COP 18000\nPlazo máximo: No aplica meses\nObservación: Tasa promocional no documentada: no inventar\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2026 §1",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4889,
+        "fragmento": "1. Requisitos vigentes El solicitante debe ser mayor de edad, demostrar ingresos mensuales iguales o superiores a 3 SMMLV y aportar una cuota inicial mínima del 25 % del valor del inmueble."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · AHO-BRISA",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.547,
+        "fragmento": "Producto: Cuenta de Ahorros Brisa\nCódigo: AHO-BRISA\nTipo: Ahorro\nTasa efectiva anual (E.A.): 1.5 %\nCuota de manejo mensual: COP 0\nPlazo máximo: No aplica meses\nObservación: Saldo mínimo de apertura COP 0\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      }
+    ]
+  },
+  {
+    "id": "P03",
+    "pregunta": "¿Qué cambió entre las políticas de crédito de vivienda de 2025 y 2026 respecto a ingresos, cuota inicial y plazo?",
+    "respuesta": "En 2025, el ingreso mínimo requerido era 2 SMMLV y la cuota inicial mínima era del 20% del valor del inmueble. Para 2026, estos requisitos cambiaron: el ingreso mínimo ahora es de 3 SMMLV y la cuota inicial mínima es del 25% del valor del inmueble. Además, el plazo máximo de financiación disminuyó de 25 años a 20 años (240 meses).\n\n[POL-CVH-2025 §1][POL-CVH-2026 §1][POL-CVH-2026 §2]",
+    "fuentes_recuperadas": [
+      {
+        "id": "POL-CVH-2025 §1",
+        "archivo": "02_credito_vivienda_2025_OBSOLETO.txt",
+        "estado": "OBSOLETO",
+        "distancia": 0.3949,
+        "fragmento": "1. Requisitos históricos Durante 2025, el ingreso mensual mínimo era de 2 SMMLV y la cuota inicial mínima era del 20 % del valor del inmueble."
+      },
+      {
+        "id": "POL-CVH-2026 §1",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4731,
+        "fragmento": "1. Requisitos vigentes El solicitante debe ser mayor de edad, demostrar ingresos mensuales iguales o superiores a 3 SMMLV y aportar una cuota inicial mínima del 25 % del valor del inmueble."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-VIV-HOR",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4889,
+        "fragmento": "Producto: Crédito de Vivienda Horizonte\nCódigo: CRE-VIV-HOR\nTipo: Crédito\nTasa efectiva anual (E.A.): 13.2 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 240 meses\nObservación: Cuota inicial mínima 25 %; consultar POL-CVH-2026\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-LI",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.5206,
+        "fragmento": "Producto: Crédito Libre Inversión\nCódigo: CRE-LI\nTipo: Crédito\nTasa efectiva anual (E.A.): 21.4 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 60 meses\nObservación: Ingreso mínimo 2 SMMLV (solo este producto)\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2025 §2",
+        "archivo": "02_credito_vivienda_2025_OBSOLETO.txt",
+        "estado": "OBSOLETO",
+        "distancia": 0.5353,
+        "fragmento": "2. Plazo y financiación históricos El plazo máximo del crédito era de 25 años. El porcentaje máximo financiable era 80 % del valor comercial aceptado. AVISO: ESTA POLÍTICA YA NO ES VIGENTE. NO USAR PARA RESPONDER REQUISITOS ACTUALES. Se conserva exclusivamente para consultas históricas y comparativas."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · TAR-NUBE",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.5549,
+        "fragmento": "Producto: Tarjeta Nube\nCódigo: TAR-NUBE\nTipo: Tarjeta de crédito\nTasa efectiva anual (E.A.): 28 %\nCuota de manejo mensual: COP 18000\nPlazo máximo: No aplica meses\nObservación: Tasa promocional no documentada: no inventar\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2026 §5",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5588,
+        "fragmento": "5. Control de versiones Esta política sustituye la versión POL-CVH-2025. Ante una consulta sobre requisitos actuales debe preferirse esta versión vigente."
+      },
+      {
+        "id": "POL-CVH-2026 §2",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5788,
+        "fragmento": "2. Plazos y financiación El plazo máximo de financiación es de 20 años (240 meses). Se puede financiar hasta el 75 % del valor comercial aceptado tras el avalúo."
+      },
+      {
+        "id": "POL-CVH-2026 §3",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.6213,
+        "fragmento": "3. Documentación requerida Todas las personas deben presentar documento de identidad y autorización para la consulta de historial crediticio. - Personas empleadas: dos comprobantes de nómina recientes y certificación laboral. - Personas independientes: extractos bancarios de los últimos tres meses y declaración de ingresos firmada por contador. - En todos los casos se requiere avalúo del inmueble previo al desembolso."
+      }
+    ]
+  },
+  {
+    "id": "P04",
+    "pregunta": "¿Cuál es la tasa efectiva anual del Crédito de Vivienda Horizonte en el catálogo de noviembre de 2026?",
+    "respuesta": "La tasa efectiva anual (E.A.) del Crédito de Vivienda Horizonte en el catálogo de noviembre de 2026 es de 13.2 %. [CAT-PROD-2026-11 · CRE-VIV-HOR]",
+    "fuentes_recuperadas": [
+      {
+        "id": "CAT-PROD-2026-11 · CRE-VIV-HOR",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.241,
+        "fragmento": "Producto: Crédito de Vivienda Horizonte\nCódigo: CRE-VIV-HOR\nTipo: Crédito\nTasa efectiva anual (E.A.): 13.2 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 240 meses\nObservación: Cuota inicial mínima 25 %; consultar POL-CVH-2026\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-LI",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.3505,
+        "fragmento": "Producto: Crédito Libre Inversión\nCódigo: CRE-LI\nTipo: Crédito\nTasa efectiva anual (E.A.): 21.4 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 60 meses\nObservación: Ingreso mínimo 2 SMMLV (solo este producto)\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · TAR-NUBE",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.3949,
+        "fragmento": "Producto: Tarjeta Nube\nCódigo: TAR-NUBE\nTipo: Tarjeta de crédito\nTasa efectiva anual (E.A.): 28 %\nCuota de manejo mensual: COP 18000\nPlazo máximo: No aplica meses\nObservación: Tasa promocional no documentada: no inventar\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2026 §2",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4362,
+        "fragmento": "2. Plazos y financiación El plazo máximo de financiación es de 20 años (240 meses). Se puede financiar hasta el 75 % del valor comercial aceptado tras el avalúo."
+      },
+      {
+        "id": "POL-CVH-2026 §1",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.513,
+        "fragmento": "1. Requisitos vigentes El solicitante debe ser mayor de edad, demostrar ingresos mensuales iguales o superiores a 3 SMMLV y aportar una cuota inicial mínima del 25 % del valor del inmueble."
+      },
+      {
+        "id": "POL-CAB-2026 §2",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5135,
+        "fragmento": "2. Condiciones El saldo mínimo de apertura es COP 0. La cuota de manejo mensual es COP 0. Las transferencias entre cuentas del Banco Nébula mediante la aplicación no tienen costo. La tarjeta débito física se solicita opcionalmente."
+      },
+      {
+        "id": "POL-CAB-2026 §4",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5156,
+        "fragmento": "4. Alcance Este documento describe únicamente la Cuenta Brisa. Las tasas de remuneración aplicables para el periodo vigente se publican en el catálogo de productos correspondiente."
+      }
+    ]
+  },
+  {
+    "id": "P05",
+    "pregunta": "¿Un asesor bancario puede solicitarme un código OTP para verificar mi identidad?",
+    "respuesta": "No, un asesor bancario no puede solicitarte un código OTP para verificar tu identidad. Los códigos OTP son personales e intransferibles y nunca se deben compartirlos con nadie, incluyendo empleados del banco. [SEG-2026 §1]",
+    "fuentes_recuperadas": [
+      {
+        "id": "SER-2026 §3",
+        "archivo": "05_atencion_solicitudes_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4207,
+        "fragmento": "3. Notificaciones El banco comunica avances al correo electrónico previamente verificado. Una solicitud incompleta puede requerir información adicional."
+      },
+      {
+        "id": "POL-CVH-2026 §3",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4333,
+        "fragmento": "3. Documentación requerida Todas las personas deben presentar documento de identidad y autorización para la consulta de historial crediticio. - Personas empleadas: dos comprobantes de nómina recientes y certificación laboral. - Personas independientes: extractos bancarios de los últimos tres meses y declaración de ingresos firmada por contador. - En todos los casos se requiere avalúo del inmueble previo al desembolso."
+      },
+      {
+        "id": "SEG-2026 §4",
+        "archivo": "04_seguridad_digital_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4336,
+        "fragmento": "4. Restricciones Las solicitudes de desbloqueo exigen validación de identidad por los canales autorizados. Nunca se debe indicar que el cliente comparta un OTP con un agente."
+      },
+      {
+        "id": "POL-CAB-2026 §3",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4447,
+        "fragmento": "3. Canales de apertura La apertura puede solicitarse en una oficina o mediante el portal digital. La validación de identidad debe completarse antes de activar la cuenta."
+      },
+      {
+        "id": "SEG-2026 §1",
+        "archivo": "04_seguridad_digital_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4473,
+        "fragmento": "1. Credenciales Ningún empleado o canal oficial debe pedir contraseñas completas, PIN ni códigos OTP al cliente. Los códigos OTP son personales e intransferibles."
+      },
+      {
+        "id": "SEG-2026 §2",
+        "archivo": "04_seguridad_digital_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5763,
+        "fragmento": "2. Reporte de sospecha de fraude Si un cliente observa una operación no reconocida, debe bloquear temporalmente el medio de pago desde la aplicación, cuando sea posible, y reportar de inmediato la operación al canal de seguridad disponible las 24 horas. El banco asignará un número de caso."
+      },
+      {
+        "id": "POL-CAB-2026 §1",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5839,
+        "fragmento": "1. Requisitos de apertura Para abrir una Cuenta Brisa, la persona debe tener al menos 18 años, presentar un documento de identidad válido, registrar un correo electrónico y disponer de un número de celular activo. No se exige certificado laboral ni comprobante de ingresos."
+      }
+    ]
+  },
+  {
+    "id": "P06",
+    "pregunta": "Detecté una operación no reconocida, ¿qué debo hacer y cuándo inicia la revisión?",
+    "respuesta": "Debes bloquear temporalmente el medio de pago desde la aplicación, si es posible, y reportar de inmediato la operación no reconocida al canal de seguridad disponible las 24 horas. El banco asignará un número de caso. El equipo de seguridad inicia la revisión del reporte en un máximo de dos días hábiles desde el inicio de la revisión. [SEG-2026 §2] [SEG-2026 §3]",
+    "fuentes_recuperadas": [
+      {
+        "id": "SEG-2026 §3",
+        "archivo": "04_seguridad_digital_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.3942,
+        "fragmento": "3. Investigación El equipo de seguridad inicia la revisión del reporte en un máximo de dos días hábiles. Este plazo es de inicio de revisión, no una garantía de resolución."
+      },
+      {
+        "id": "SEG-2026 §2",
+        "archivo": "04_seguridad_digital_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4763,
+        "fragmento": "2. Reporte de sospecha de fraude Si un cliente observa una operación no reconocida, debe bloquear temporalmente el medio de pago desde la aplicación, cuando sea posible, y reportar de inmediato la operación al canal de seguridad disponible las 24 horas. El banco asignará un número de caso."
+      },
+      {
+        "id": "SER-2026 §2",
+        "archivo": "05_atencion_solicitudes_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.525,
+        "fragmento": "2. Quejas y reclamos Las quejas por inconformidad con un producto o servicio tienen un plazo objetivo de respuesta de diez días hábiles. El cliente debe recibir un identificador para hacer seguimiento."
+      },
+      {
+        "id": "SER-2026 §3",
+        "archivo": "05_atencion_solicitudes_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5708,
+        "fragmento": "3. Notificaciones El banco comunica avances al correo electrónico previamente verificado. Una solicitud incompleta puede requerir información adicional."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · AHO-BRISA",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.6394,
+        "fragmento": "Producto: Cuenta de Ahorros Brisa\nCódigo: AHO-BRISA\nTipo: Ahorro\nTasa efectiva anual (E.A.): 1.5 %\nCuota de manejo mensual: COP 0\nPlazo máximo: No aplica meses\nObservación: Saldo mínimo de apertura COP 0\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · TAR-NUBE",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.642,
+        "fragmento": "Producto: Tarjeta Nube\nCódigo: TAR-NUBE\nTipo: Tarjeta de crédito\nTasa efectiva anual (E.A.): 28 %\nCuota de manejo mensual: COP 18000\nPlazo máximo: No aplica meses\nObservación: Tasa promocional no documentada: no inventar\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2026 §5",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.6593,
+        "fragmento": "5. Control de versiones Esta política sustituye la versión POL-CVH-2025. Ante una consulta sobre requisitos actuales debe preferirse esta versión vigente."
+      }
+    ]
+  },
+  {
+    "id": "P07",
+    "pregunta": "¿Cuál será la tasa hipotecaria de diciembre de 2027?",
+    "respuesta": "No encuentro esa información en los documentos disponibles.",
+    "fuentes_recuperadas": [
+      {
+        "id": "CAT-PROD-2026-11 · CRE-VIV-HOR",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.5097,
+        "fragmento": "Producto: Crédito de Vivienda Horizonte\nCódigo: CRE-VIV-HOR\nTipo: Crédito\nTasa efectiva anual (E.A.): 13.2 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 240 meses\nObservación: Cuota inicial mínima 25 %; consultar POL-CVH-2026\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-LI",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.5282,
+        "fragmento": "Producto: Crédito Libre Inversión\nCódigo: CRE-LI\nTipo: Crédito\nTasa efectiva anual (E.A.): 21.4 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 60 meses\nObservación: Ingreso mínimo 2 SMMLV (solo este producto)\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2026 §2",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5317,
+        "fragmento": "2. Plazos y financiación El plazo máximo de financiación es de 20 años (240 meses). Se puede financiar hasta el 75 % del valor comercial aceptado tras el avalúo."
+      },
+      {
+        "id": "POL-CVH-2026 §1",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5644,
+        "fragmento": "1. Requisitos vigentes El solicitante debe ser mayor de edad, demostrar ingresos mensuales iguales o superiores a 3 SMMLV y aportar una cuota inicial mínima del 25 % del valor del inmueble."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · TAR-NUBE",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.5748,
+        "fragmento": "Producto: Tarjeta Nube\nCódigo: TAR-NUBE\nTipo: Tarjeta de crédito\nTasa efectiva anual (E.A.): 28 %\nCuota de manejo mensual: COP 18000\nPlazo máximo: No aplica meses\nObservación: Tasa promocional no documentada: no inventar\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CAB-2026 §2",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.6228,
+        "fragmento": "2. Condiciones El saldo mínimo de apertura es COP 0. La cuota de manejo mensual es COP 0. Las transferencias entre cuentas del Banco Nébula mediante la aplicación no tienen costo. La tarjeta débito física se solicita opcionalmente."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · AHO-BRISA",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.6652,
+        "fragmento": "Producto: Cuenta de Ahorros Brisa\nCódigo: AHO-BRISA\nTipo: Ahorro\nTasa efectiva anual (E.A.): 1.5 %\nCuota de manejo mensual: COP 0\nPlazo máximo: No aplica meses\nObservación: Saldo mínimo de apertura COP 0\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      }
+    ]
+  },
+  {
+    "id": "P08",
+    "pregunta": "Soy independiente y quiero un Crédito Horizonte, ¿qué documentos debo aportar?",
+    "respuesta": "Debes presentar:\n- Documento de identidad y autorización para la consulta de historial crediticio.\n- Extractos bancarios de los últimos tres meses.\n- Declaración de ingresos firmada por contador.\n- Avalúo del inmueble previo al desembolso.\n\n[POL-CVH-2026 §3]",
+    "fuentes_recuperadas": [
+      {
+        "id": "POL-CVH-2026 §3",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4119,
+        "fragmento": "3. Documentación requerida Todas las personas deben presentar documento de identidad y autorización para la consulta de historial crediticio. - Personas empleadas: dos comprobantes de nómina recientes y certificación laboral. - Personas independientes: extractos bancarios de los últimos tres meses y declaración de ingresos firmada por contador. - En todos los casos se requiere avalúo del inmueble previo al desembolso."
+      },
+      {
+        "id": "POL-CAB-2026 §1",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5092,
+        "fragmento": "1. Requisitos de apertura Para abrir una Cuenta Brisa, la persona debe tener al menos 18 años, presentar un documento de identidad válido, registrar un correo electrónico y disponer de un número de celular activo. No se exige certificado laboral ni comprobante de ingresos."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-VIV-HOR",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.5376,
+        "fragmento": "Producto: Crédito de Vivienda Horizonte\nCódigo: CRE-VIV-HOR\nTipo: Crédito\nTasa efectiva anual (E.A.): 13.2 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 240 meses\nObservación: Cuota inicial mínima 25 %; consultar POL-CVH-2026\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-LI",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.5552,
+        "fragmento": "Producto: Crédito Libre Inversión\nCódigo: CRE-LI\nTipo: Crédito\nTasa efectiva anual (E.A.): 21.4 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 60 meses\nObservación: Ingreso mínimo 2 SMMLV (solo este producto)\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2026 §1",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5615,
+        "fragmento": "1. Requisitos vigentes El solicitante debe ser mayor de edad, demostrar ingresos mensuales iguales o superiores a 3 SMMLV y aportar una cuota inicial mínima del 25 % del valor del inmueble."
+      },
+      {
+        "id": "POL-CAB-2026 §2",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5954,
+        "fragmento": "2. Condiciones El saldo mínimo de apertura es COP 0. La cuota de manejo mensual es COP 0. Las transferencias entre cuentas del Banco Nébula mediante la aplicación no tienen costo. La tarjeta débito física se solicita opcionalmente."
+      },
+      {
+        "id": "POL-CVH-2026 §2",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.6499,
+        "fragmento": "2. Plazos y financiación El plazo máximo de financiación es de 20 años (240 meses). Se puede financiar hasta el 75 % del valor comercial aceptado tras el avalúo."
+      }
+    ]
+  },
+  {
+    "id": "P09",
+    "pregunta": "¿Qué cuota de manejo mensual tiene la Cuenta Brisa y qué tasa anual ofrece según el catálogo?",
+    "respuesta": "La Cuenta Brisa no tiene cuota de manejo mensual [POL-CAB-2026 §4].\n\nLa tasa efectiva anual (E.A.) para la Cuenta Brisa es del 1.5 % [CAT-PROD-2026-11 · AHO-BRISA].",
+    "fuentes_recuperadas": [
+      {
+        "id": "POL-CAB-2026 §4",
+        "archivo": "01_cuenta_ahorro_brisa_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.2938,
+        "fragmento": "4. Alcance Este documento describe únicamente la Cuenta Brisa. Las tasas de remuneración aplicables para el periodo vigente se publican en el catálogo de productos correspondiente."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · AHO-BRISA",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.3924,
+        "fragmento": "Producto: Cuenta de Ahorros Brisa\nCódigo: AHO-BRISA\nTipo: Ahorro\nTasa efectiva anual (E.A.): 1.5 %\nCuota de manejo mensual: COP 0\nPlazo máximo: No aplica meses\nObservación: Saldo mínimo de apertura COP 0\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · TAR-NUBE",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4341,
+        "fragmento": "Producto: Tarjeta Nube\nCódigo: TAR-NUBE\nTipo: Tarjeta de crédito\nTasa efectiva anual (E.A.): 28 %\nCuota de manejo mensual: COP 18000\nPlazo máximo: No aplica meses\nObservación: Tasa promocional no documentada: no inventar\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "POL-CVH-2026 §4",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.4462,
+        "fragmento": "4. Tasas La tasa aplicable se consulta en el catálogo de productos vigente y puede cambiar entre periodos. No se debe inferir una tasa para fechas no publicadas."
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-VIV-HOR",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4582,
+        "fragmento": "Producto: Crédito de Vivienda Horizonte\nCódigo: CRE-VIV-HOR\nTipo: Crédito\nTasa efectiva anual (E.A.): 13.2 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 240 meses\nObservación: Cuota inicial mínima 25 %; consultar POL-CVH-2026\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "CAT-PROD-2026-11 · CRE-LI",
+        "archivo": "catalogo_productos_2026_11.xlsx",
+        "estado": "VIGENTE EN EL PERÍODO",
+        "distancia": 0.4846,
+        "fragmento": "Producto: Crédito Libre Inversión\nCódigo: CRE-LI\nTipo: Crédito\nTasa efectiva anual (E.A.): 21.4 %\nCuota de manejo mensual: COP 0\nPlazo máximo: 60 meses\nObservación: Ingreso mínimo 2 SMMLV (solo este producto)\nVigencia de las tasas: 2026-11-01 a 2026-11-30"
+      },
+      {
+        "id": "SER-2026 §1",
+        "archivo": "05_atencion_solicitudes_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.5524,
+        "fragmento": "1. Solicitudes informativas Las solicitudes de información general se responden en un plazo objetivo de cinco días hábiles."
+      }
+    ]
+  },
+  {
+    "id": "P10",
+    "pregunta": "¿Cuál es la comisión por hacer una transferencia internacional a Japón?",
+    "respuesta": "No encuentro esa información en los documentos disponibles.",
+    "fuentes_recuperadas": [
+      {
+        "id": "SER-2026 §4",
+        "archivo": "05_atencion_solicitudes_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.6228,
+        "fragmento": "4. Límites del documento Este procedimiento no establece condiciones de transferencias internacionales ni tasas para productos futuros."
+      },
+      {
+        "id": "POL-CVH-2026 §2",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.7626,
+        "fragmento": "2. Plazos y financiación El plazo máximo de financiación es de 20 años (240 meses). Se puede financiar hasta el 75 % del valor comercial aceptado tras el avalúo."
+      },
+      {
+        "id": "POL-CVH-2026 §5",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.7665,
+        "fragmento": "5. Control de versiones Esta política sustituye la versión POL-CVH-2025. Ante una consulta sobre requisitos actuales debe preferirse esta versión vigente."
+      },
+      {
+        "id": "POL-CVH-2026 §3",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.7846,
+        "fragmento": "3. Documentación requerida Todas las personas deben presentar documento de identidad y autorización para la consulta de historial crediticio. - Personas empleadas: dos comprobantes de nómina recientes y certificación laboral. - Personas independientes: extractos bancarios de los últimos tres meses y declaración de ingresos firmada por contador. - En todos los casos se requiere avalúo del inmueble previo al desembolso."
+      },
+      {
+        "id": "SER-2026 §3",
+        "archivo": "05_atencion_solicitudes_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.8009,
+        "fragmento": "3. Notificaciones El banco comunica avances al correo electrónico previamente verificado. Una solicitud incompleta puede requerir información adicional."
+      },
+      {
+        "id": "SEG-2026 §3",
+        "archivo": "04_seguridad_digital_2026.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.827,
+        "fragmento": "3. Investigación El equipo de seguridad inicia la revisión del reporte en un máximo de dos días hábiles. Este plazo es de inicio de revisión, no una garantía de resolución."
+      },
+      {
+        "id": "POL-CVH-2026 §1",
+        "archivo": "03_credito_vivienda_2026_VIGENTE.txt",
+        "estado": "VIGENTE",
+        "distancia": 0.8351,
+        "fragmento": "1. Requisitos vigentes El solicitante debe ser mayor de edad, demostrar ingresos mensuales iguales o superiores a 3 SMMLV y aportar una cuota inicial mínima del 25 % del valor del inmueble."
+      }
+    ]
+  }
+]
