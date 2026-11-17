@@ -1,0 +1,32 @@
+# Base vectorial y API en contenedores. Ollama corre en el equipo (usa la GPU).
+name: olympus
+
+x-python: &python
+  build: .
+  depends_on: [chroma]
+  volumes:
+    - .:/app
+    - modelos:/root/.cache/huggingface
+  environment:
+    CHROMA_HOST: chroma
+    CHROMA_PORT: "8000"
+    OLLAMA_URL: http://host.docker.internal:11434
+    ANONYMIZED_TELEMETRY: "False"
+    PYTHONDONTWRITEBYTECODE: "1"
+
+services:
+  chroma:
+    image: chromadb/chroma:1.5.9
+    ports: ["127.0.0.1:8100:8000"]
+    volumes: [chroma-data:/data]
+    environment:
+      ANONYMIZED_TELEMETRY: "False"
+
+  app:
+    <<: *python
+    ports: ["127.0.0.1:8010:8000"]
+    command: python -m uvicorn src.api:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  chroma-data:
+  modelos:
