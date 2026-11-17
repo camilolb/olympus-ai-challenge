@@ -17,7 +17,8 @@ LLM_TEMPERATURA = 0.0  # respuestas repetibles: mismo contexto, misma respuesta
 # Búsqueda
 METRICA_DISTANCIA = 'cosine'  # 0 = mismo sentido, 1 = sin relación
 ESTADO_OBSOLETO = 'OBSOLETO'
+# Si el fragmento más cercano está más lejos que esto, no se llama al modelo.
 # Calibrado con las preguntas públicas: las que tienen respuesta encuentran algo por
-# debajo de 0.43; P10 (sin respuesta) no baja de 0.62. Más allá de este valor no se llama
-# al modelo. P07 (0.45) no se separa por distancia: esa la resuelve el modelo con sus reglas.
+# debajo de 0.46; P10 (sin respuesta) no baja de 0.62. P07 (0.45) no se separa por
+# distancia: esa la resuelve el modelo con sus reglas.
 DISTANCIA_MAXIMA_RELEVANTE = 0.6

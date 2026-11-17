@@ -33,6 +33,15 @@ def test_lejos_no_llama_al_modelo(monkeypatch):
     assert len(r['fuentes_recuperadas']) == 1
 
 
+def test_con_respaldo_el_modelo_recibe_todo(monkeypatch):
+    borde = hallazgo('POL-CVH-2026', 'VIGENTE', LEJOS)  # útil aunque esté pasado el umbral
+    monkeypatch.setattr(rag, 'buscar', lambda *a, **kw: [VIGENTE, borde])
+    recibidos = []
+    monkeypatch.setattr(rag, 'generar', lambda p, h: recibidos.extend(h) or 'ok')
+    rag.preguntar('¿Cuota inicial?')
+    assert recibidos == [VIGENTE, borde]
+
+
 def test_pregunta_actual_no_trae_obsoletos(monkeypatch):
     monkeypatch.setattr(rag, 'buscar', buscar_falso)
     monkeypatch.setattr(rag, 'generar', lambda p, h: 'ok')

@@ -27,9 +27,10 @@ def recuperar(pregunta: str, k: int) -> list[dict]:
     return sorted(vigentes + obsoletos, key=lambda h: h['distancia'])
 
 
-def relevantes(hallazgos: list[dict]) -> list[dict]:
-    """Descarta lo que está tan lejos que no puede responder la pregunta."""
-    return [h for h in hallazgos if h['distancia'] <= DISTANCIA_MAXIMA_RELEVANTE]
+def hay_respaldo(hallazgos: list[dict]) -> bool:
+    """¿Algo se parece lo suficiente a la pregunta? Se mira solo el más cercano: filtrar
+    fragmento por fragmento descartaba textos útiles que quedaban justo en el borde."""
+    return any(h['distancia'] <= DISTANCIA_MAXIMA_RELEVANTE for h in hallazgos)
 
 
 def fuente(hallazgo: dict) -> dict:
@@ -50,9 +51,8 @@ def preguntar(pregunta: str, k: int = 7) -> dict:
         raise ValueError('La pregunta está vacía')
 
     hallazgos = recuperar(pregunta, k)
-    utiles = relevantes(hallazgos)
     # Si nada se parece lo suficiente, no se le pregunta al modelo: no hay de dónde responder.
-    respuesta = generar(pregunta, utiles) if utiles else SIN_INFORMACION
+    respuesta = generar(pregunta, hallazgos) if hay_respaldo(hallazgos) else SIN_INFORMACION
     return {
         'pregunta': pregunta,
         'respuesta': respuesta,
