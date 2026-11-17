@@ -27,7 +27,7 @@ docker compose exec app python -m scripts.probar_preguntas
 
 ### Sin Docker
 
-Los mismos pasos del README. Si no existe la variable `CHROMA_HOST`, la base queda embebida en `data/chroma/`.
+Los mismos pasos de RETO.md. Si no existe la variable `CHROMA_HOST`, la base queda embebida en `data/chroma/`.
 
 ## Arquitectura
 
