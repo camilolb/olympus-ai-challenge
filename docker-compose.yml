@@ -27,6 +27,11 @@ services:
     ports: ["127.0.0.1:8010:8000"]
     command: python -m uvicorn src.api:app --host 0.0.0.0 --port 8000 --reload
 
+  traza:
+    <<: *python
+    ports: ["127.0.0.1:8020:8000"]
+    command: python -m uvicorn traza.servidor:app --host 0.0.0.0 --port 8000 --reload --reload-dir src --reload-dir traza
+
 volumes:
   chroma-data:
   modelos:

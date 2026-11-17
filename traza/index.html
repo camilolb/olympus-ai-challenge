@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banco Nébula · traza</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: barra de estado arriba; chat a la izquierda y traza (cascada de pasos) a la derecha. */
+:root {
+  --bg: #F2F4F7; --surface: #FFFFFF; --surface-2: #E9EDF3; --ink: #161D2B; --ink-2: #47526A; --muted: #6A7589; --line: #D8DEE8;
+  --accent: #3540A8; --accent-soft: #E4E7FA; --ok: #1D7347; --ok-soft: #DDF1E6; --warn: #8F5400; --warn-soft: #FBEBD0; --bad: #B23A2E; --bad-soft: #F8E1DE;
+  --s-vig: #2a78d6; --s-obs: #eb6834; --s-cat: #1baf7a;
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0F131A; --surface: #171C25; --surface-2: #202634; --ink: #E7EBF2; --ink-2: #B4BDCC; --muted: #8B95A8; --line: #2A3242;
+    --accent: #9AA2F5; --accent-soft: #252B52; --ok: #5CC98D; --ok-soft: #173326; --warn: #E7A94A; --warn-soft: #3A2A12; --bad: #F08A7E; --bad-soft: #3D1C19;
+    --s-vig: #3987e5; --s-obs: #d95926; --s-cat: #199e70;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); display: grid; grid-template-rows: auto 1fr; }
+code, .mono { font-family: var(--f-mono); font-size: 0.85em; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 12px 20px; background: var(--surface); border-bottom: 1px solid var(--line); }
+header h1 { font: 700 1.15rem var(--f-display); margin: 0 auto 0 0; }
+.pill { display: inline-flex; align-items: center; gap: 7px; font-family: var(--f-mono); font-size: 0.78rem; color: var(--ink-2); }
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.pill.ok::before { background: var(--ok); }
+.pill.mal::before { background: var(--bad); }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 6px 12px; font-size: 0.85rem; }
+.btn:hover { border-color: var(--accent); }
+.btn.primario { background: var(--accent); border-color: var(--accent); color: var(--surface); font-weight: 600; }
+.btn:disabled { opacity: 0.5; cursor: default; }
+
+main { display: grid; grid-template-columns: minmax(340px, 0.85fr) 1.15fr; min-height: 0; }
+.col { min-height: 0; display: grid; }
+.chat { grid-template-rows: 1fr auto; border-right: 1px solid var(--line); }
+.mensajes { overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.vacio { color: var(--ink-2); display: grid; gap: 12px; }
+.vacio h2 { font: 700 1.3rem var(--f-display); margin: 0; color: var(--ink); }
+.sugerencias { display: flex; flex-wrap: wrap; gap: 6px; }
+.sug { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; font-size: 0.82rem; text-align: left; }
+.sug:hover { border-color: var(--accent); }
+.sug b { font-family: var(--f-mono); font-weight: 500; color: var(--accent); margin-right: 4px; }
+
+.yo { align-self: flex-end; max-width: 85%; background: var(--accent); color: var(--surface); padding: 9px 14px; border-radius: 14px 14px 4px 14px; }
+.asis { align-self: flex-start; max-width: 95%; background: var(--surface); border: 1px solid var(--line); border-radius: 14px 14px 14px 4px; padding: 12px 14px; display: grid; gap: 10px; }
+.asis.sel { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.asis .texto { white-space: pre-wrap; }
+.cita { font-family: var(--f-mono); font-size: 0.76rem; background: var(--accent-soft); color: var(--accent); padding: 1px 6px; border-radius: 5px; white-space: nowrap; }
+.asis.error { border-color: var(--bad); background: var(--bad-soft); color: var(--bad); }
+.pie { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 0.8rem; color: var(--muted); }
+.pie button { background: none; border: none; color: var(--accent); padding: 0; font-size: 0.8rem; }
+.fuentes { display: grid; gap: 4px; }
+.fuente { display: grid; grid-template-columns: minmax(0, 1fr) auto 5ch; gap: 10px; align-items: center; font-size: 0.8rem; }
+.fuente .ref { font-family: var(--f-mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fuente .d { font-family: var(--f-mono); text-align: right; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.estado { display: inline-flex; align-items: center; gap: 5px; font-family: var(--f-mono); font-size: 0.68rem; text-transform: uppercase; color: var(--ink-2); white-space: nowrap; }
+.estado::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--s-vig); }
+.estado.obs::before { background: transparent; box-shadow: inset 0 0 0 2px var(--s-obs); }
+.estado.cat::before { background: var(--s-cat); border-radius: 1px; }
+.pensando { color: var(--muted); font-size: 0.9rem; }
+
+form { display: flex; gap: 8px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); background: var(--surface); }
+form input[type="text"] { flex: 1; min-width: 0; font: inherit; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--bg); color: var(--ink); }
+form label { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+form select { font: inherit; font-size: 0.85rem; padding: 6px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); color: var(--ink); }
+
+.traza { grid-template-rows: auto 1fr; background: var(--surface); }
+.traza-head { padding: 16px 20px 12px; border-bottom: 1px solid var(--line); display: grid; gap: 6px; }
+.traza-head h2 { font: 700 1.05rem var(--f-display); margin: 0; }
+.traza-head p { margin: 0; color: var(--ink-2); font-size: 0.88rem; }
+.traza-head .curl { font-family: var(--f-mono); font-size: 0.74rem; color: var(--muted); overflow-x: auto; white-space: nowrap; }
+.pasos { overflow-y: auto; padding: 8px 12px 24px; }
+.paso { border-radius: 8px; }
+.paso + .paso { margin-top: 2px; }
+.fila { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(90px, 0.9fr) 7ch; gap: 12px; align-items: center; background: none; border: none; color: inherit; text-align: left; padding: 7px 8px; border-radius: 8px; }
+.fila:hover, .paso.abierto > .fila { background: var(--surface-2); }
+.nombre { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.nombre .lab { font-weight: 600; font-size: 0.88rem; white-space: nowrap; }
+.nombre .fn { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nombre .flecha { color: var(--muted); font-size: 0.7rem; width: 1ch; flex: none; }
+.cascada { position: relative; height: 10px; background: var(--surface-2); border-radius: 3px; }
+.cascada span { position: absolute; top: 0; bottom: 0; min-width: 3px; border-radius: 3px; background: var(--accent); }
+.paso.corriendo .cascada span { background: repeating-linear-gradient(90deg, var(--accent) 0 6px, var(--accent-soft) 6px 12px); }
+.paso.error .cascada span { background: var(--bad); }
+.ms { font-family: var(--f-mono); font-size: 0.78rem; text-align: right; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.detalle { padding: 6px 10px 14px 28px; display: grid; gap: 10px; }
+.detalle .explica { color: var(--ink-2); font-size: 0.88rem; max-width: 70ch; }
+.detalle .t { font-family: var(--f-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+pre { margin: 0; font-family: var(--f-mono); font-size: 0.76rem; line-height: 1.5; background: var(--surface-2); border-radius: 8px; padding: 10px 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; max-height: 360px; overflow-y: auto; }
+.tabla { display: grid; gap: 3px; }
+.tabla .fh { display: grid; grid-template-columns: minmax(0, 1.1fr) auto minmax(60px, 0.8fr) 6ch; gap: 10px; align-items: center; font-size: 0.78rem; }
+.tabla .fh .ref { font-family: var(--f-mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tabla .bar { height: 7px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
+.tabla .bar i { display: block; height: 100%; }
+.tabla .fh.fuera { opacity: 0.45; }
+.datos { display: flex; flex-wrap: wrap; gap: 8px; }
+.dato { background: var(--surface-2); border-radius: 8px; padding: 8px 12px; display: grid; }
+.dato b { font-family: var(--f-mono); font-size: 1rem; font-weight: 500; }
+.dato span { font-size: 0.72rem; color: var(--muted); }
+.rol { font-family: var(--f-mono); font-size: 0.7rem; text-transform: uppercase; color: var(--accent); }
+.nada { color: var(--muted); padding: 24px 12px; font-size: 0.9rem; max-width: 52ch; }
+
+@media (max-width: 900px) {
+  body { height: auto; }
+  main { grid-template-columns: 1fr; }
+  .chat { border-right: none; border-bottom: 1px solid var(--line); }
+  .mensajes { max-height: 60vh; }
+}
+@media (prefers-reduced-motion: reduce) { .paso.corriendo .cascada span { background: var(--accent); } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Banco Nébula · traza</h1>
+  <span class="pill" id="p-chroma">Chroma …</span>
+  <span class="pill" id="p-ollama">Ollama …</span>
+  <button class="btn" id="reindexar" type="button">Reindexar documentos</button>
+</header>
+<main>
+  <section class="col chat" aria-label="Chat">
+    <div class="mensajes" id="mensajes"></div>
+    <form id="form">
+      <input type="text" id="pregunta" placeholder="Pregunta algo sobre Banco Nébula" autocomplete="off" required>
+      <label for="k">k <select id="k"></select></label>
+      <button class="btn primario" id="enviar" type="submit">Preguntar</button>
+    </form>
+  </section>
+  <section class="col traza" aria-label="Traza">
+    <div class="traza-head" id="traza-head"><h2>Traza</h2><p>Cada fila es una función real de <code>src/</code> mientras se ejecuta. Toca una para ver qué recibió y qué devolvió.</p></div>
+    <div class="pasos" id="pasos"><p class="nada">Haz una pregunta o reindexa y aquí aparece cada paso en orden: qué función corrió, cuánto tardó y qué datos pasaron de una a otra.</p></div>
+  </section>
+</main>
+
+<script>
+const PREGUNTAS = [
+  ['P01', '¿Cuál es el saldo mínimo para abrir una Cuenta Brisa?'],
+  ['P02', '¿Cuál es la cuota inicial mínima de un Crédito Horizonte vigente en 2026?'],
+  ['P03', '¿Qué cambió entre las políticas de crédito de vivienda de 2025 y 2026 respecto a ingresos, cuota inicial y plazo?'],
+  ['P04', '¿Cuál es la tasa efectiva anual del Crédito de Vivienda Horizonte en el catálogo de noviembre de 2026?'],
+  ['P05', '¿Un asesor bancario puede solicitarme un código OTP para verificar mi identidad?'],
+  ['P06', 'Detecté una operación no reconocida, ¿qué debo hacer y cuándo inicia la revisión?'],
+  ['P07', '¿Cuál será la tasa hipotecaria de diciembre de 2027?'],
+  ['P08', 'Soy independiente y quiero un Crédito Horizonte, ¿qué documentos debo aportar?'],
+  ['P09', '¿Qué cuota de manejo mensual tiene la Cuenta Brisa y qué tasa anual ofrece según el catálogo?'],
+  ['P10', '¿Cuál es la comisión por hacer una transferencia internacional a Japón?'],
+];
+const PASOS = {
+  'src.rag.preguntar': ['Responder la pregunta', 'Punto de entrada. Coordina la búsqueda y el modelo, y arma la respuesta con sus fuentes. Es lo mismo que corre POST /ask.'],
+  'src.rag.recuperar': ['Recuperar fragmentos', 'Siempre busca vigentes. Si la pregunta mira al pasado, hace una segunda búsqueda solo para sumar los obsoletos, para que una versión no desplace a la otra.'],
+  'src.rag.es_historica': ['¿Pregunta por el pasado?', 'Busca palabras como 2025, versión, cambió o compara. Si aparece alguna, la pregunta es histórica.'],
+  'src.busqueda.buscar': ['Buscar en Chroma', 'Convierte la pregunta en vector y le pide a Chroma los k fragmentos más cercanos. El filtro where saca los obsoletos cuando no se pidieron.'],
+  'src.busqueda.coleccion': ['Abrir la colección', 'Se conecta al servidor Chroma y abre banco_nebula, configurada para medir distancia coseno.'],
+  'src.busqueda.vectorizar': ['Texto a vector (MiniLM)', 'MiniLM convierte el texto en 384 números normalizados. Textos que dicen lo mismo quedan con números parecidos. La primera vez tarda varios segundos porque carga el modelo en memoria; después, milisegundos.'],
+  'src.rag.hay_respaldo': ['¿Hay de dónde responder?', 'Mira el fragmento más cercano. Si está más lejos que el umbral, no se llama al modelo y se responde que no hay información. Si no, el modelo recibe todos los fragmentos.'],
+  'src.llm.generar': ['Pedir la respuesta a Qwen', 'Arma el mensaje con los fragmentos útiles, llama a Ollama y devuelve el texto.'],
+  'src.llm.construir_mensajes': ['Armar el mensaje', 'Dos partes: system con las reglas, y user con la fecha, los fragmentos etiquetados y la pregunta. Esto es exactamente lo que lee el modelo.'],
+  'src.llm.llamar_ollama': ['Llamar a Ollama', 'POST a /api/chat con temperatura 0. Ollama devuelve el texto y cuántos tokens leyó y escribió.'],
+  'src.documentos.cargar_todo': ['Cargar documentos', 'Junta los fragmentos de los TXT y del Excel en una sola lista.'],
+  'src.ingesta.cargar_txt': ['Leer los TXT', 'Lee el encabezado (ID, estado, vigencia) y corta cada documento por sus secciones numeradas.'],
+  'src.ingesta_excel.cargar_excel': ['Leer el Excel', 'Convierte cada fila del catálogo en un fragmento con su vigencia.'],
+  'src.busqueda.indexar': ['Guardar en Chroma', 'Calcula los vectores y hace upsert con ids fijos: reindexar reemplaza, no duplica. Borra lo que ya no existe.'],
+};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const seg = ms => ms == null ? '…' : ms < 1000 ? `${Math.round(ms)} ms` : `${(ms / 1000).toFixed(1)} s`;
+const serie = estado => estado === 'OBSOLETO' ? 'obs' : estado.includes('PERÍODO') ? 'cat' : '';
+const conCitas = t => esc(t).replace(/\[([^\]]+)\]/g, '<span class="cita">$1</span>');
+
+const turnos = [];
+let elegido = null, ocupado = false, umbral = 0.6;
+
+async function cargarEstado() {
+  try {
+    const e = await (await fetch('/estado')).json();
+    umbral = e.umbral;
+    const okChroma = typeof e.fragmentos === 'number' && e.fragmentos > 0;
+    $('#p-chroma').className = 'pill ' + (okChroma ? 'ok' : 'mal');
+    $('#p-chroma').textContent = typeof e.fragmentos === 'number' ? `Chroma · ${e.fragmentos} fragmentos` : 'Chroma sin conexión';
+    $('#p-ollama').className = 'pill ' + (e.ollama ? 'ok' : 'mal');
+    $('#p-ollama').textContent = e.ollama ? `Ollama · ${e.modelo}` : `Ollama apagado o sin ${e.modelo}`;
+    if (!$('#k').options.length) {
+      for (let i = 1; i <= e.k_maximo; i++) $('#k').add(new Option(i, i, i === e.k, i === e.k));
+    }
+  } catch { $('#p-chroma').className = 'pill mal'; $('#p-chroma').textContent = 'Servidor de traza sin respuesta'; }
+}
+
+function iniciar(tipo, url, pregunta, k) {
+  const turno = { tipo, pregunta, k, spans: new Map(), orden: [], abiertos: new Set(), estado: 'corriendo', inicio: performance.now(), total: null, resultado: null, error: null };
+  turnos.push(turno); elegido = turno; ocupado = true;
+  pintar();
+  const es = new EventSource(url);
+  es.onmessage = ev => {
+    const e = JSON.parse(ev.data);
+    if (e.tipo === 'inicio') {
+      const padre = turno.spans.get(e.padre);
+      turno.spans.set(e.id, { ...e, nivel: padre ? padre.nivel + 1 : 0, ms: null });
+      turno.orden.push(e.id);
+    } else if (e.tipo === 'fin' || e.tipo === 'error') {
+      Object.assign(turno.spans.get(e.id), { ms: e.ms, salida: e.salida, error: e.error });
+    } else if (e.tipo === 'resultado') turno.resultado = e.datos;
+    else if (e.tipo === 'fallo') turno.error = e.error;
+    else if (e.tipo === 'listo') {
+      es.close(); turno.total = e.t; turno.estado = turno.error ? 'fallo' : 'listo'; ocupado = false;
+      if (tipo === 'indexar') cargarEstado();
+    }
+    pintar();
+  };
+  es.onerror = () => {
+    es.close();
+    if (turno.estado === 'corriendo') { turno.estado = 'fallo'; turno.error = 'Se cortó la conexión con el servidor de traza.'; ocupado = false; pintar(); }
+  };
+}
+
+function preguntar(texto) {
+  if (ocupado || !texto.trim()) return;
+  const k = +$('#k').value || 7;
+  iniciar('preguntar', `/traza/preguntar?pregunta=${encodeURIComponent(texto)}&k=${k}`, texto, k);
+  $('#pregunta').value = '';
+}
+
+function pintarChat() {
+  const m = $('#mensajes');
+  if (!turnos.length) {
+    m.innerHTML = `<div class="vacio"><h2>Pregúntale al asistente</h2><p>Escribe una pregunta o usa una de las 10 de práctica. A la derecha vas a ver cada función que corre, en orden y con sus datos.</p>
+      <div class="sugerencias">${PREGUNTAS.map(([id, q]) => `<button class="sug" type="button" data-q="${esc(q)}"><b>${id}</b>${esc(q)}</button>`).join('')}</div></div>`;
+    return;
+  }
+  m.innerHTML = turnos.map((t, i) => {
+    const sel = t === elegido ? ' sel' : '';
+    const pie = `<div class="pie"><span>${t.estado === 'corriendo' ? 'Ejecutando…' : seg(t.total)}</span><button type="button" data-turno="${i}">${t === elegido ? 'Viendo la traza' : 'Ver traza'}</button></div>`;
+    if (t.tipo === 'indexar') {
+      const cuerpo = t.error ? esc(t.error) : t.resultado ? `Reindexado: ${t.resultado.indexados} fragmentos en Chroma.` : 'Reindexando…';
+      return `<div class="asis${sel}${t.error ? ' error' : ''}"><div class="texto">${cuerpo}</div>${pie}</div>`;
+    }
+    let cuerpo;
+    if (t.error) cuerpo = `<div class="texto">${esc(t.error)}</div>`;
+    else if (!t.resultado) cuerpo = `<div class="pensando">Buscando y redactando…</div>`;
+    else cuerpo = `<div class="texto">${conCitas(t.resultado.respuesta)}</div>
+      <div class="fuentes">${t.resultado.fuentes_recuperadas.map(f => `<div class="fuente"><span class="ref">${esc(f.id)}</span><span class="estado ${serie(f.estado)}">${esc(f.estado)}</span><span class="d">${f.distancia.toFixed(3)}</span></div>`).join('')}</div>`;
+    return `<div class="yo">${esc(t.pregunta)}</div><div class="asis${sel}${t.error ? ' error' : ''}">${cuerpo}${pie}</div>`;
+  }).join('');
+  m.scrollTop = m.scrollHeight;
+}
+
+function tablaHallazgos(lista) {
+  return `<div class="tabla">${lista.map(h => `<div class="fh${h.distancia > umbral ? ' fuera' : ''}" title="${esc(h.texto)}">
+    <span class="ref">${esc(h.ref)}</span><span class="estado ${serie(h.estado)}">${esc(h.estado)}</span>
+    <span class="bar"><i style="width:${Math.max(0, (1 - h.distancia) * 100).toFixed(1)}%;background:var(--s-${serie(h.estado) || 'vig'})"></i></span>
+    <span class="ms">${h.distancia.toFixed(3)}</span></div>`).join('')}</div>`;
+}
+
+function detalle(s) {
+  const bloques = [`<p class="explica">${esc((PASOS[s.funcion] || [])[1] || '')}</p>`];
+  const ent = s.entrada || {};
+  if (s.funcion === 'src.rag.hay_respaldo') {
+    bloques.push(`<span class="t">Entrada · umbral ${ent.umbral} (en gris, lo que queda más lejos)</span>${tablaHallazgos(ent.hallazgos)}`);
+  } else {
+    bloques.push(`<span class="t">Entrada</span><pre>${esc(JSON.stringify(ent, null, 2))}</pre>`);
+  }
+  if (s.error) bloques.push(`<span class="t">Error</span><pre>${esc(s.error)}</pre>`);
+  else if (s.salida !== undefined) {
+    const out = s.salida;
+    if (Array.isArray(out) && out.length && 'distancia' in out[0]) bloques.push(`<span class="t">Salida · ${out.length} fragmentos (pasa el cursor para ver el texto)</span>${tablaHallazgos(out)}`);
+    else if (out && out.mensajes) bloques.push(`<span class="t">Salida · lo que recibe el modelo</span>${out.mensajes.map(m => `<span class="rol">${esc(m.role)}</span><pre>${esc(m.content)}</pre>`).join('')}`);
+    else if (out && 'tokens_leidos' in out) bloques.push(`<span class="t">Salida</span><div class="datos">
+        <div class="dato"><b>${out.tokens_leidos ?? '–'}</b><span>tokens leídos</span></div>
+        <div class="dato"><b>${out.tokens_escritos ?? '–'}</b><span>tokens escritos</span></div>
+        <div class="dato"><b>${out.tokens_por_segundo ?? '–'}</b><span>tokens por segundo</span></div>
+        <div class="dato"><b>${out.segundos_cargando_modelo}</b><span>s cargando el modelo</span></div>
+        <div class="dato"><b>${out.segundos_total}</b><span>s en total</span></div></div><pre>${esc(out.respuesta)}</pre>`);
+    else bloques.push(`<span class="t">Salida</span><pre>${esc(JSON.stringify(out, null, 2))}</pre>`);
+  }
+  return `<div class="detalle">${bloques.join('')}</div>`;
+}
+
+function pintarTraza() {
+  const t = elegido;
+  if (!t) return;
+  const head = t.tipo === 'indexar'
+    ? `<h2>Traza · reindexar</h2><p>Lee los documentos, calcula los vectores y los guarda en Chroma. Equivale a <code>python -m scripts.indexar</code>.</p>`
+    : `<h2>Traza · ${esc(t.pregunta)}</h2><p>k = ${t.k} · ${t.estado === 'corriendo' ? 'ejecutando…' : 'total ' + seg(t.total)}</p>
+       <div class="curl">curl -X POST http://127.0.0.1:8010/ask -H 'content-type: application/json' -d '${esc(JSON.stringify({ pregunta: t.pregunta, k: t.k }))}'</div>`;
+  $('#traza-head').innerHTML = head;
+  const ahora = performance.now() - t.inicio;
+  const total = Math.max(t.total ?? ahora, 1);
+  $('#pasos').innerHTML = t.orden.map(id => {
+    const s = t.spans.get(id);
+    const [lab] = PASOS[s.funcion] || [s.funcion.split('.').pop()];
+    const dur = s.ms ?? Math.max(ahora - s.t, 0);
+    const estado = s.error ? 'error' : s.ms == null ? 'corriendo' : '';
+    const abierto = t.abiertos.has(id);
+    return `<div class="paso ${estado}${abierto ? ' abierto' : ''}">
+      <button class="fila" type="button" data-span="${id}" aria-expanded="${abierto}">
+        <span class="nombre" style="padding-left:${s.nivel * 16}px"><span class="flecha">${abierto ? '▾' : '▸'}</span><span class="lab">${esc(lab)}</span><span class="fn">${esc(s.funcion.replace('src.', ''))}</span></span>
+        <span class="cascada"><span style="left:${(s.t / total * 100).toFixed(2)}%;width:${(dur / total * 100).toFixed(2)}%"></span></span>
+        <span class="ms">${s.ms == null ? seg(dur) : seg(s.ms)}</span>
+      </button>${abierto ? detalle(s) : ''}</div>`;
+  }).join('') || '<p class="nada">Esperando el primer paso…</p>';
+}
+
+function pintar() {
+  pintarChat(); pintarTraza();
+  $('#enviar').disabled = ocupado; $('#reindexar').disabled = ocupado;
+}
+
+const REFRESCO_MS = 100;  // la barra del paso en curso crece mientras corre
+setInterval(() => { if (elegido && elegido.estado === 'corriendo') pintarTraza(); }, REFRESCO_MS);
+
+$('#form').addEventListener('submit', e => { e.preventDefault(); preguntar($('#pregunta').value); });
+$('#reindexar').addEventListener('click', () => { if (!ocupado) iniciar('indexar', '/traza/indexar', null, null); });
+$('#mensajes').addEventListener('click', e => {
+  const sug = e.target.closest('[data-q]'); if (sug) return preguntar(sug.dataset.q);
+  const b = e.target.closest('[data-turno]'); if (b) { elegido = turnos[+b.dataset.turno]; pintar(); }
+});
+$('#pasos').addEventListener('click', e => {
+  const b = e.target.closest('[data-span]'); if (!b || !elegido) return;
+  const id = +b.dataset.span;
+  elegido.abiertos.has(id) ? elegido.abiertos.delete(id) : elegido.abiertos.add(id);
+  pintarTraza();
+});
+
+cargarEstado();
+pintar();
+</script>
+</body>
+</html>
